@@ -133,7 +133,7 @@ async def set_assistant_new(chat_id, number):
 
 
 async def set_assistant(chat_id):
-    from PurviBots.core.userbot import assistants
+    from Clonify.core.userbot import assistants
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
@@ -147,7 +147,7 @@ async def set_assistant(chat_id):
 
 
 async def get_assistant(chat_id: int) -> str:
-    from PurviBots.core.userbot import assistants
+    from Clonify.core.userbot import assistants
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
@@ -174,7 +174,7 @@ async def get_assistant(chat_id: int) -> str:
 
 
 async def set_calls_assistant(chat_id):
-    from PurviBots.core.userbot import assistants
+    from Clonify.core.userbot import assistants
 
     ran_assistant = random.choice(assistants)
     assistantdict[chat_id] = ran_assistant
@@ -187,7 +187,7 @@ async def set_calls_assistant(chat_id):
 
 
 async def group_assistant(self, chat_id: int) -> int:
-    from PurviBots.core.userbot import assistants
+    from Clonify.core.userbot import assistants
 
     assistant = assistantdict.get(chat_id)
     if not assistant:
@@ -819,6 +819,7 @@ async def add_served_user_clone(user_id: int, bot_id: int):
 
 async def get_served_users_clone(bot_id: int) -> list:
     return [user async for user in usersdbc.find({"bot_id": bot_id})]
+    
 
 
 async def add_served_chat_clone(chat_id: int, bot_id: int):
@@ -830,3 +831,77 @@ async def add_served_chat_clone(chat_id: int, bot_id: int):
 async def get_served_chats_clone(bot_id: int) -> list:
     return [chat async for chat in chatsdbc.find({"bot_id": bot_id})]
 
+# ---------------- START PANEL DATABASE ---------------- #
+
+startpicdb = mongodb.startpic
+startvideodb = mongodb.startvideo
+starttextdb = mongodb.starttext
+startbuttondb = mongodb.startbuttons
+
+
+# SET START PIC
+async def set_start_pic(user_id: int, pic: str):
+    await startpicdb.update_one(
+        {"user_id": user_id},
+        {"$set": {"pic": pic}},
+        upsert=True,
+    )
+
+
+# GET START PIC
+async def get_start_pic(user_id: int):
+    data = await startpicdb.find_one({"user_id": user_id})
+    if not data:
+        return None
+    return data["pic"]
+
+
+# SET START VIDEO
+async def set_start_video(user_id: int, video: str):
+    await startvideodb.update_one(
+        {"user_id": user_id},
+        {"$set": {"video": video}},
+        upsert=True,
+    )
+
+
+# GET START VIDEO
+async def get_start_video(user_id: int):
+    data = await startvideodb.find_one({"user_id": user_id})
+    if not data:
+        return None
+    return data["video"]
+
+
+# SET START TEXT
+async def set_start_text(user_id: int, text: str):
+    await starttextdb.update_one(
+        {"user_id": user_id},
+        {"$set": {"text": text}},
+        upsert=True,
+    )
+
+
+# GET START TEXT
+async def get_start_text(user_id: int):
+    data = await starttextdb.find_one({"user_id": user_id})
+    if not data:
+        return None
+    return data["text"]
+
+
+# SET START BUTTONS
+async def set_start_buttons(user_id: int, buttons: list):
+    await startbuttondb.update_one(
+        {"user_id": user_id},
+        {"$set": {"buttons": buttons}},
+        upsert=True,
+    )
+
+
+# GET START BUTTONS
+async def get_start_buttons(user_id: int):
+    data = await startbuttondb.find_one({"user_id": user_id})
+    if not data:
+        return None
+    return data["buttons"]

@@ -15,9 +15,9 @@ API_HASH = getenv("API_HASH")
 BOT_TOKEN = getenv("BOT_TOKEN")
 BOT_ID = getenv("BOT_ID")
 # -------------------------------------------------------
-OWNER_USERNAME = getenv("OWNER_USERNAME","purvibots")
+OWNER_USERNAME = getenv("OWNER_USERNAME","Oyekanhaa")
 # --------------------------------------------------------
-BOT_USERNAME = getenv("BOT_USERNAME" , "Suhani_Music_Robot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "Suhani")
 # --------------------------------------------------------
 BOT_NAME = getenv("BOT_NAME" , "Maya")
 # ---------------------------------------------------------
@@ -63,7 +63,7 @@ UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
     "https://github.com/Coder-Careless/Music-Clone.git",
 )
-UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
+UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
     "GIT_TOKEN", "....")  
 # ---------
